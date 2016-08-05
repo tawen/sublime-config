@@ -1,0 +1,112 @@
+sublime 笔记
+
+1. 通过快捷键 ctrl+` 或者 View > Show Console 菜单打开控制台
+	适用于 Sublime Text 3：
+	import  urllib.request,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler()));open(os.path.join(ipp,pf),'wb').write(urllib.request.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read())
+
+	适用于 Sublime Text 2：
+	import  urllib2,os;pf='Package Control.sublime-package';ipp=sublime.installed_packages_path();os.makedirs(ipp)ifnotos.path.exists(ipp)elseNone;urllib2.install_opener(urllib2.build_opener(urllib2.ProxyHandler()));open(os.path.join(ipp,pf),'wb').write(urllib2.urlopen('http://sublime.wbond.net/'+pf.replace(' ','%20')).read());print('Please restart Sublime Text to finish installation')
+
+
+2. ctrl+shift+p调用出窗口：输入install package
+
+3. 
+	3.1 ChineseLocalizations  	
+			中文汉化包
+			在help -> language -> 选择语言
+	3.2 Alignment 	
+			等号对齐
+			按Ctrl+Alt+A，可以是凌乱的代码以等号为准左右对其
+	3.3 BracketHighlighter 
+			高亮显示匹配的括号、引号和标签
+
+	3.4 DocBlockr
+			帮助你创造你的代码注释，通过解析功能，参数，变量，并且自动添加基本项目。
+
+	3.5 SublimeREPL
+			SublimeREPL 允许你在 Sublime Texxt 中运行各种语言（NodeJS ， Python，Ruby， Scala 和 Haskell 等等）。
+
+	3.6 Emmet
+			快速编写 HTML/CSS 代码
+			例如: ( (h4>a[rel=external]) +p>img[width=500 height=320])*12
+					> 	子集
+					+ 	兄弟级
+					[ ] 属性, 多个属性空格隔开
+					*N  复制N个
+					()  整体为一个单元
+	3.7 Js Format
+			ctrl+alt+f
+			Js代码格式化插件
+
+	3.8 SideBarEnhancements
+			增强侧边栏
+
+	3.9 IMESupport
+			输入法跟随光标
+
+	3.10 sublimeCodeIntel
+			支持多语言的高速编码的代码提示工具
+			装上后还不能直接使用,
+			你可以点击 Preferences->Browse Packages->SublimeCodeIntel
+			添加一个 .codeintel 文件夹再再在文件夹里面添加一个 config 文件
+			(.codeintel  前面一定要 小数点. window不能直接创建用dos窗口创建即可 (创建目录 mkdir .codeintel))
+			config配置文件:
+			{
+			  "PHP": {
+			    "php": '/usr/bin/php',
+			    "phpExtraPaths": [],
+			    "phpConfigFile": 'php.ini'
+			  },
+			  "JavaScript": {
+			    "javascriptExtraPaths": []
+			  },
+			  "Perl": {
+			    "perl": "/usr/bin/perl",
+			    "perlExtraPaths": []
+			  },
+			  "Ruby": {
+			    "ruby": "/usr/bin/ruby",
+			    "rubyExtraPaths": []
+			  },
+			  "Python": {
+			    "python": '/usr/bin/python',
+			    "pythonExtraPaths": []
+			  },
+			  "Python3": {
+			    "python": '/usr/bin/python3',
+			    "pythonExtraPaths": []
+			  }
+			}
+
+
+
+1.自动更新
+
+	有时候会弹出自动更新的框，解决方法：
+
+	找到Preferences -> Settings-User（设置用户）
+	在最后一个花括号结尾（“｝”）前添加一句： "update_check":false
+	然后请关闭Submine Text并重启，即不会再弹出更新提醒了
+	
+2.不能获取插件列表 Package Control：There are no packages available for installation
+
+	cmd下输入 ping sublime.wbond.net 链接一下看下sublime.wbond.net这个域名的ip
+	打开 C:\Windows\system32\drivers\etc\hosts 文件。 
+	在最后面加上例如 50.116.34.243 sublime.wbond.net 这样的对应关系，IP是上面测试的
+	然后请关闭Submine Text并重启，即不会再弹出更新提醒了
+
+3.修改Sublime Text3 的侧边栏字体大小
+	3.1 安装”PackageResourceViewer”
+	3.2 Ctrl+Shift+P，搜索”PackageResourceViewer: Open Resource”
+	3.3 搜索”Theme – Default”
+	3.4 搜索”Default.sublimt-theme”
+	3.5 在”sidebar_label”,”后面一行加上 “font.size”: 14,
+	3.6 如果觉得行间距太小，可以往上找下，有个”sidebar_tree”,，调一下里边的”row_padding”值即可。
+
+4. 右键添加sublime快捷方式
+	4.1 开始--运行，输入regedit。（win+r，使用快捷键打开运行窗口）
+	4.2 在注册表编辑器中找的这个节点：
+		在 HKEY_CLASSSES_ROOT → * → Shell 
+	4.3	在Shell下，新建项命名为 Sublime Text 3（见名知意），
+		在右边窗口新建字符串值（右键--新建--字符串值）。名称：Icon；值：D:\Program\Sublime Text 3\sublime_text.exe,0 【注：使用您自己的安装文件目录】
+		在新建的项下面新建项Command（必须这个名称）.修改右侧窗口的默认值，修改为：D:\Program\Sublime Text 3\sublime_text.exe %1【注：使用您自己的安装文件目录】
